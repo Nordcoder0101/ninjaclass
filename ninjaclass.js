@@ -28,7 +28,30 @@ function Ninja(name){
     console.log(`Name: ${this.name}, Health: ${this.health}, Speed: ${speed}, Strength: ${strength}`)
     return this
   }
+
+  Ninja.prototype.punch = function(ninjaToPunch){
+    if (ninjaToPunch instanceof Ninja) {
+    ninjaToPunch.health -= 5
+    console.log(`${ninjaToPunch.name} was punched by ${this.name} and lost 5 Health!`)
+    } else {
+      console.log('WTF did you just punch?')
+    }
+  }
+
+  Ninja.prototype.kick = function(ninjaToKick){
+    if (ninjaToKick instanceof Ninja){
+      ninjaToKick.health -= (getStrength() * 15)
+      console.log(`${ninjaToKick.name} was kicked by ${this.name} and lost ${getStrength() * 15} Health!`)
+    } else {
+      console.log('WTF did you just kick?')
+    }
+    
+  }
 }
 
 ninja1 = new Ninja('Hyabusa')
 ninja1.sayName().showStats().drinkSake().showStats()
+ninja2 = new Ninja('Ryu')
+ninja2.kick(ninja1)
+ninja2.punch(ninja1)
+ninja1.showStats()
